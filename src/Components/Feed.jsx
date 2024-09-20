@@ -20,11 +20,12 @@ const Feed = (props) => {
     navigate("/login");
   };
 
-  return (
-    <>
-      <div>
-        <Container>
-          <h1>Instagram Postcard</h1>
+  let x = Array.from({ length: 25 });
+  let y = x.map((item) => {
+    console.log(item);
+    return (
+      <>
+        <div>
           <Card sx={{ maxWidth: 345, margin: "auto", boxShadow: 3 }}>
             <CardContent>
               <Typography variant="h6" component="div" gutterBottom>
@@ -40,13 +41,24 @@ const Feed = (props) => {
             <CardContent>
               <Typography variant="body2" color="text.secondary"></Typography>
               <Stack direction={"row"} justifyContent={"space-between"}>
-                <CiHeart />
-                <CiBookmark />
+                <CiHeart style={{ fontSize: "30px" }} />
+                <CiBookmark style={{ fontSize: "30px" }} />
               </Stack>
             </CardContent>
           </Card>
-        </Container>
-      </div>
+        </div>
+      </>
+    );
+  });
+
+  console.log(x);
+  return (
+    <>
+      <Container style={{ display: "flex" }}>
+        <h1>Instagram Postcard</h1>
+        {y}
+      </Container>
+
       <Button onClick={handleLogout}>Logout</Button>
     </>
   );
