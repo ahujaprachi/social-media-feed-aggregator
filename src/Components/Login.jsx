@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { TextField, Button, Typography, Paper, Link } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Typography,
+  Paper,
+  Link,
+  Stack,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -27,64 +34,66 @@ const Login = () => {
   };
 
   return (
-    <Paper
-      style={{
-        padding: "16px",
-        margin: "16px 0",
-        height: "350px",
-        width: "300px",
-        borderRadius: "10px",
-      }}
-    >
-      <form onSubmit={handleSubmit}>
-        <Typography variant="h4">Login</Typography>
-        <TextField
-          fullWidth
-          margin="normal"
-          label="Email"
-          variant="outlined"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          inputProps={{
-            autoComplete: "new-password",
-            form: {
-              autoComplete: "off",
-            },
-          }}
-        />
-        <TextField
-          fullWidth
-          margin="normal"
-          label="Password"
-          type="password"
-          variant="outlined"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <div
-          style={{
-            fontsize: "16px",
-            textAlign: "left",
-            marginTop: "10px",
-            marginBottom: "30px",
-          }}
-        >
-          Forget Password?
-        </div>
+    <Stack justifyContent={"center"} alignItems={"center"} margin={10}>
+      <Paper
+        style={{
+          padding: "16px",
+          margin: "16px 0",
+          height: "350px",
+          width: "300px",
+          borderRadius: "10px",
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <Typography variant="h4">Login</Typography>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Email"
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            inputProps={{
+              autoComplete: "new-password",
+              form: {
+                autoComplete: "off",
+              },
+            }}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Password"
+            type="password"
+            variant="outlined"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <div
+            style={{
+              fontsize: "16px",
+              textAlign: "left",
+              marginTop: "10px",
+              marginBottom: "30px",
+            }}
+          >
+            Forget Password?
+          </div>
 
-        <Button variant="contained" color="primary" type="submit">
-          Login
-        </Button>
-        <Typography variant="body2" align="center" style={{ marginTop: 16 }}>
-          Don't have an account?{" "}
-          <Link href="/signup" color="primary">
-            Sign Up
-          </Link>
-        </Typography>
-      </form>
-    </Paper>
+          <Button variant="contained" color="primary" type="submit">
+            Login
+          </Button>
+          <Typography variant="body2" align="center" style={{ marginTop: 16 }}>
+            Don't have an account?{" "}
+            <Link href="/signup" color="primary">
+              Sign Up
+            </Link>
+          </Typography>
+        </form>
+      </Paper>
+    </Stack>
   );
 };
 
