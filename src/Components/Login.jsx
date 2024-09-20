@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button, Typography, Paper } from "@mui/material";
+import { TextField, Button, Typography, Paper, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -12,13 +12,18 @@ const Login = () => {
     e.preventDefault();
     const user = { email, password };
     let users = JSON.parse(localStorage.getItem("users"));
-    if (Object.keys(users).includes(user.email)) {
-      alert("userfound");
+    console.log(users[user.email]);
+    if (users[user.email] !== undefined) {
+      if (users[user.email].password === user.password) {
+        alert("Login success");
+        localStorage.setItem("isLoggedIn", user.email);
+        navigate("/");
+      } else {
+        alert("Username or password is incorrect");
+      }
+    } else {
+      alert("Username or password is incorrect");
     }
-    console.log(Object.keys(users).includes(user.email));
-    console.log(Object.keys(users));
-    console.log(user.email);
-    navigate("/feed");
   };
 
   return (
@@ -68,9 +73,16 @@ const Login = () => {
         >
           Forget Password?
         </div>
+
         <Button variant="contained" color="primary" type="submit">
           Login
         </Button>
+        <Typography variant="body2" align="center" style={{ marginTop: 16 }}>
+          Don't have an account?{" "}
+          <Link href="/signup" color="primary">
+            Sign Up
+          </Link>
+        </Typography>
       </form>
     </Paper>
   );
