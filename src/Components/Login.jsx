@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { TextField, Button, Typography, Paper, Stack } from "@mui/material";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { PostsContext } from "../context/PostContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { initializePosts } = useContext(PostsContext);
 
   const navigate = useNavigate();
 
@@ -17,6 +19,8 @@ const Login = () => {
       if (users[user.email].password === user.password) {
         alert("Login success");
         localStorage.setItem("isLoggedIn", user.email);
+        const posts = JSON.parse(localStorage.getItem("posts")) || [];
+        initializePosts(posts);
         navigate("/");
       } else {
         alert("Username or password is incorrect");

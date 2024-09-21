@@ -36,17 +36,15 @@ const Feed = (props) => {
   const navigate = useNavigate();
   const [user, setUser] = useState("Unknown");
   const [searchText, setSearchText] = useState("");
-  const { posts, addPost, initializePosts, theme } = useContext(PostsContext);
+  const { posts, initializePosts, theme } = useContext(PostsContext);
 
   useEffect(() => {
     if (localStorage.getItem("isLoggedIn") == null) {
       navigate("/login");
     } else {
       setUser(getLoggedInUser());
-      const posts = JSON.parse(localStorage.getItem("posts")) || [];
-      initializePosts(posts);
     }
-  }, [posts]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
