@@ -1,5 +1,5 @@
-import { Button, Stack, Step } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Avatar, Button, Stack, Step } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
@@ -12,17 +12,27 @@ import {
   Container,
 } from "@mui/material";
 import { getLoggedInUser } from "../utils/User";
+import { TbSettingsStar } from "react-icons/tb";
 import FeedService from "../services/FeedService";
+import { pages } from "../utils/PageTokens";
+import { addPostInDb } from "../utils/Db";
+import { PostsContext } from "../context/PostContext";
 
 const Feed = (props) => {
-  const [feeds, setFeeds] = useState([]);
   const navigate = useNavigate();
+  const [user, setUser] = useState("Unknown");
+  const { addposts, addPost } = useContext(PostsContext);
 
   useEffect(() => {
-    const feedService = new FeedService();
-    feedService.getPosts().then((response) => {
-      setFeeds(response.data.data);
-    });
+    if (localStorage.getItem("isLoggedIn") == null) {
+      navigate("/login");
+    } else {
+      setUser(getLoggedInUser());
+      const posts = JSON.parse(localStorage.getItem("posts")) || [];
+      posts.map((post) => {
+        addPost(post);
+      });
+    }
   }, []);
 
   const handleLogout = () => {
@@ -30,12 +40,11 @@ const Feed = (props) => {
     navigate("/login");
   };
 
-  console.log(feeds);
   const arr = [];
   return (
     <>
       <Container>
-        <Typography marginTop={3}>Welcome, {getLoggedInUser()}</Typography>
+        <Typography marginTop={3}>Welcome, {user}</Typography>
         <Stack direction={"row"} justifyContent={"space-between"}>
           <Typography variant="h4" fontWeight={"bold"} marginBottom={5}>
             Social Media Feeds
@@ -50,33 +59,34 @@ const Feed = (props) => {
           flexWrap={"wrap"}
           justifyContent={"space-evenly"}
         >
-          {feeds?.map((item) => {
-            console.log("LIKE", item.likes?.data?.length);
+          {JSON.parse(localStorage.getItem("posts"))?.map((item) => {
             return (
               <div key={item}>
                 <Card sx={{ maxWidth: 345, margin: "10px", boxShadow: 3 }}>
                   <CardContent>
-                    <Typography variant="h6" component="div" gutterBottom>
-                      username_here
-                    </Typography>
+                    <Stack direction={"row"} spacing={1} alignItems={"center"}>
+                      <Avatar src={item.profile} />
+                      <Typography variant="h6" component="div" gutterBottom>
+                        {item.username}
+                      </Typography>
+                    </Stack>
                   </CardContent>
                   <CardMedia
                     component="img"
                     height="240"
-                    image={item.full_picture} // Replace with your image URL
+                    image={item.post.full_picture} // Replace with your image URL
                     alt="Post"
                   />
                   <CardContent>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                    ></Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {item.post.message}
+                    </Typography>
                     <Stack direction={"row"} justifyContent={"space-between"}>
                       <Stack justifyContent={"center"} alignItems={"center"}>
                         <CiHeart style={{ fontSize: "30px" }} />
                         <Typography>
-                          {item.likes?.data?.length
-                            ? item.likes?.data?.length
+                          {item.post.likes?.data?.length
+                            ? item.post.likes?.data?.length
                             : 0}
                         </Typography>
                       </Stack>
