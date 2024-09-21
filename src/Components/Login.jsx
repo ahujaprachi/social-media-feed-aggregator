@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import {
-  TextField,
-  Button,
-  Typography,
-  Paper,
-  Link,
-  Stack,
-} from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { TextField, Button, Typography, Paper, Stack } from "@mui/material";
+import "./Login.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -37,7 +31,7 @@ const Login = () => {
     <Stack justifyContent={"center"} alignItems={"center"} margin={10}>
       <Paper
         style={{
-          padding: "16px",
+          padding: "0px 16px",
           margin: "16px 0",
           height: "350px",
           width: "300px",
@@ -71,23 +65,13 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <div
-            style={{
-              fontsize: "16px",
-              textAlign: "left",
-              marginTop: "10px",
-              marginBottom: "30px",
-            }}
-          >
-            Forget Password?
-          </div>
 
           <Button variant="contained" color="primary" type="submit">
             Login
           </Button>
           <Typography variant="body2" align="center" style={{ marginTop: 16 }}>
             Don't have an account?{" "}
-            <Link href="/signup" color="primary">
+            <Link to="/signup" className="no-anchor">
               Sign Up
             </Link>
           </Typography>

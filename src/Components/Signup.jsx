@@ -1,14 +1,7 @@
 import React, { useState } from "react";
-import {
-  TextField,
-  Button,
-  Typography,
-  Paper,
-  Link,
-  Stack,
-} from "@mui/material";
-import "./signup.css";
-import { json, useNavigate } from "react-router-dom";
+import { TextField, Button, Typography, Paper, Stack } from "@mui/material";
+import "./Signup.css";
+import { json, Link, useNavigate } from "react-router-dom";
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -78,7 +71,7 @@ const Signup = () => {
           </Button>
           <Typography variant="body2" align="center" style={{ marginTop: 16 }}>
             Already have an account?{" "}
-            <Link href="/login" color="primary">
+            <Link to="/login" className="no-anchor">
               Login
             </Link>
           </Typography>

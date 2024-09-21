@@ -8,4 +8,10 @@
 .dark-theme {
   color: white;
   background-color: rgb(17, 17, 17);
+  min-height: 100vh;
+}
+
+.no-anchor {
+  text-decoration: none;
+  color: rgba(44, 142, 227, 0.775);
 }

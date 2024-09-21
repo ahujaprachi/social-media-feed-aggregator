@@ -7,10 +7,10 @@ import { PostsProvider } from "./context/PostContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <PostsProvider>
+    <PostsProvider>
+      <BrowserRouter>
         <App />
-      </PostsProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </PostsProvider>
   </StrictMode>
 );
