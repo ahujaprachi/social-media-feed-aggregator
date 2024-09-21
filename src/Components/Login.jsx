@@ -13,8 +13,7 @@ const Login = () => {
     e.preventDefault();
     const user = { email, password };
     let users = JSON.parse(localStorage.getItem("users"));
-    console.log(users[user.email]);
-    if (users[user.email] !== undefined) {
+    if (users && users[user.email] !== undefined) {
       if (users[user.email].password === user.password) {
         alert("Login success");
         localStorage.setItem("isLoggedIn", user.email);

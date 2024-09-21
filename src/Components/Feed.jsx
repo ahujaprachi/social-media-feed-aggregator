@@ -44,11 +44,9 @@ const Feed = (props) => {
     } else {
       setUser(getLoggedInUser());
       const posts = JSON.parse(localStorage.getItem("posts")) || [];
-      posts.map((post) => {
-        addPost(post);
-      });
+      initializePosts(posts);
     }
-  }, []);
+  }, [posts]);
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
