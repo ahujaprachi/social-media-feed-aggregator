@@ -2,5 +2,10 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.dark-theme {
+  color: white;
+  background-color: rgb(17, 17, 17);
 }
