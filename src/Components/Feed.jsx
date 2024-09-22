@@ -10,7 +10,7 @@ import {
   Tabs,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa6";
@@ -31,6 +31,8 @@ import TabPanel from "@mui/lab/TabPanel";
 import { addPostInDb, toggleLike, toggleSave } from "../utils/Db";
 import { PostsContext } from "../context/PostContext";
 import { MdAccountCircle } from "react-icons/md";
+import { TiHomeOutline } from "react-icons/ti";
+import { Navbar } from "./Navbar";
 
 const Feed = (props) => {
   const navigate = useNavigate();
@@ -110,6 +112,7 @@ const Feed = (props) => {
   const arr = [];
   return (
     <>
+      <Navbar handleLogout={handleLogout} />
       <Container>
         <Typography marginTop={3}>Welcome, {user}</Typography>
         <Stack
@@ -121,10 +124,6 @@ const Feed = (props) => {
           <Typography variant="h4" fontWeight={"bold"}>
             Social Media Feeds
           </Typography>
-
-          <Stack direction={"row"}>
-            <Button onClick={handleLogout}>Logout</Button>
-          </Stack>
         </Stack>
         <Box sx={{ width: "100%", typography: "body1" }}>
           <TabContext value={filter}>
