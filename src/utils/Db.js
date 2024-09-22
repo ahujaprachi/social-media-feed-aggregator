@@ -18,6 +18,11 @@ function checkPostExists(postId) {
   }
 }
 
+export function getPostById(postId) {
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  return posts.find((post) => post.id === postId);
+}
+
 export function toggleLike(postId) {
   const posts = JSON.parse(localStorage.getItem("posts")) || [];
   const updatedPosts = posts.map((post) => {

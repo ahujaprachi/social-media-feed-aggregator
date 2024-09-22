@@ -103,6 +103,10 @@ const Feed = (props) => {
     );
   };
 
+  function handleViewPost(postId) {
+    navigate("/" + postId);
+  }
+
   const arr = [];
   return (
     <>
@@ -193,7 +197,10 @@ const Feed = (props) => {
                     boxShadow: 3,
                   }}
                 >
-                  <CardContent>
+                  <CardContent
+                    onClick={() => handleViewPost(item.id)}
+                    sx={{ cursor: "pointer" }}
+                  >
                     <Stack direction={"row"} spacing={1} alignItems={"center"}>
                       <Avatar src={item.profile} />
                       <Typography variant="h6" component="div" gutterBottom>
@@ -207,6 +214,7 @@ const Feed = (props) => {
                     image={item.fullPicture} // Replace with your image URL
                     alt="Post"
                     sx={{ cursor: "pointer" }}
+                    onClick={() => handleViewPost(item.id)}
                   />
                   <Typography variant="body2" color="text.secondary" margin={1}>
                     {item.message}

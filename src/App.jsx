@@ -13,6 +13,7 @@ import { FormControlLabel, FormGroup } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import { PostsContext } from "./context/PostContext";
+import { SingleFeed } from "./Components/SingleFeed";
 
 function App() {
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -116,6 +117,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/:feedId" element={<SingleFeed />} />
         <Route path="/" element={<Feed />} />
         <Route path="/*" element={<Error404 />} />
       </Routes>
