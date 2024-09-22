@@ -102,7 +102,7 @@ function App() {
 
   return (
     <div className={theme}>
-      <FormGroup sx={{ position: "absolute", right: 5 }}>
+      <FormGroup sx={{ position: "absolute", right: 5, top: 5 }}>
         <FormControlLabel
           control={
             <MaterialUISwitch
