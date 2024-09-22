@@ -31,7 +31,7 @@ const Login = () => {
   };
 
   return (
-    <Stack justifyContent={"center"} alignItems={"center"} margin={10}>
+    <Stack justifyContent={"center"} alignItems={"center"} paddingTop={10}>
       <Paper
         style={{
           padding: "0px 16px",
